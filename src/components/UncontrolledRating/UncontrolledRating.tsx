@@ -3,28 +3,30 @@ import React, {useState} from "react";
 const UncontrolledRating = () => {
     const [value, setValue] = useState(0);
 
+    const starOn = (value: number) => {
+        setValue(value);
+    }
+
     return (
         <div>
-            <Star selected={value > 0}/><button onClick={()=>setValue(1)}>1</button>
-            <Star selected={value > 1}/><button onClick={()=>setValue(2)}>1</button>
-            <Star selected={value > 2}/><button onClick={()=>setValue(3)}>1</button>
-            <Star selected={value > 3}/><button onClick={()=>setValue(4)}>1</button>
-            <Star selected={value > 4}/><button onClick={()=>setValue(5)}>1</button>
+            <Star selected={value > 0} starOn={() => starOn(1)}/>
+            <Star selected={value > 1} starOn={() => starOn(2)}/>
+            <Star selected={value > 2} starOn={() => starOn(3)}/>
+            <Star selected={value > 3} starOn={() => starOn(4)}/>
+            <Star selected={value > 4} starOn={() => starOn(5)}/>
         </div>
     )
 };
 
 type StarPropsType = {
     selected: boolean
+    starOn: () => void
 }
 
-
 const Star = (props: StarPropsType) => {
-    if (props.selected) {
-        return (<span><b>Star</b> </span>)
-    } else {
-        return (<span>Star </span>)
-    }
+    return props.selected ?
+        <span onClick={props.starOn}><b>Star</b> </span> :
+        <span onClick={props.starOn}>Star </span>;
 }
 
 export default UncontrolledRating
