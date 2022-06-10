@@ -1,17 +1,37 @@
-import React from 'react';
-import './on-off.css'
+import React, {useState} from 'react';
+import s from './onoff.module.css'
 
-type OnOffType = {
-    doWork?: boolean
-}
+const OnOff = () => {
+    const [on, setOn] = useState<boolean>(false);
 
-const OnOff = (props: OnOffType) => {
-    const isPropsNotUndefined = props.doWork !== undefined;
+    const onStyle = {
+        width: '25px',
+        height: '25px',
+        border: '2px black solid',
+        padding: '10px',
+        backgroundColor: on ? 'green' : 'white'
+    }
+    const offStyle = {
+        width: '25px',
+        height: '25px',
+        border: '2px black solid',
+        padding: '10px',
+        backgroundColor: !on ? 'red' : 'white'
+    }
+    const indicatorStyle = {
+        borderRadius: '50%',
+        width: '15px',
+        height: '15px',
+        border: '2px black solid',
+        padding: '10px',
+        backgroundColor: on ? 'green' : 'red'
+    }
+
     return (
-        <div className='wrapper'>
-            <div className={`block ${isPropsNotUndefined && props.doWork && 'green'}`}>ON</div>
-            <div className={`block ${isPropsNotUndefined && !props.doWork && 'red'}`}>OFF</div>
-            <div className={`block circle ${isPropsNotUndefined ? (props.doWork ? 'green' : 'red') : null}`}></div>
+        <div className={s.wrapper}>
+            <div style={onStyle} onClick={() => setOn(true)}>ON</div>
+            <div style={offStyle} onClick={() => setOn(false)}>OFF</div>
+            <div style={indicatorStyle}></div>
         </div>
     );
 };

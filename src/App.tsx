@@ -1,26 +1,32 @@
 import React from 'react';
 import './App.css';
-import Accordion from "./components/accordion/accordion";
 import Rating from "./components/rating/rating";
 import OnOff from "./components/OnOff/OnOff";
+import UncontrolledAccordion from "./components/UncontrolledAccordion/UncontrolledAccordion";
+import UncontrolledRating from "./components/UncontrolledRating/UncontrolledRating";
 
 function App() {
     return (
         <div className="App">
             <AppTitle title={'This is APP component'}/>
+            <hr/>
             Article 1
-            <Accordion titleValue={'Menu'} collapsed={false}/>
-            <Accordion titleValue={'User list'} collapsed={true}/>
+            {/*<Accordion titleValue={'Menu'} collapsed={false}/>*/}
+            {/*<Accordion titleValue={'User list'} collapsed={true}/>*/}
+            <UncontrolledAccordion titleValue={'Menu'}/>
+            <UncontrolledAccordion titleValue={'User List'}/>
+            <hr/>
             Article 2
-            {/*<Rating value={0}/>*/}
+            <UncontrolledRating/>
             {/*<Rating value={1}/>*/}
             {/*<Rating value={2}/>*/}
             {/*<Rating value={3}/>*/}
             {/*<Rating value={4}/>*/}
             {/*<Rating value={5}/>*/}
-            <OnOff doWork={true}/>
-            <OnOff doWork={false}/>
-            <OnOff />
+            <hr/>
+            Article 3
+            <OnOff/>
+            <OnOff/>
         </div>
     );
 }
