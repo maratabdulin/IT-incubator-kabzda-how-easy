@@ -1,19 +1,16 @@
 import React, {useState} from "react";
+import {RatingValueType} from "../rating/rating";
 
 const UncontrolledRating = () => {
-    const [value, setValue] = useState(0);
-
-    const starOn = (value: number) => {
-        setValue(value);
-    }
+    const [value, setValue] = useState<RatingValueType>(0);
 
     return (
         <div>
-            <Star selected={value > 0} starOn={() => starOn(1)}/>
-            <Star selected={value > 1} starOn={() => starOn(2)}/>
-            <Star selected={value > 2} starOn={() => starOn(3)}/>
-            <Star selected={value > 3} starOn={() => starOn(4)}/>
-            <Star selected={value > 4} starOn={() => starOn(5)}/>
+            <Star selected={value > 0} starOn={() => setValue(1)}/>
+            <Star selected={value > 1} starOn={() => setValue(2)}/>
+            <Star selected={value > 2} starOn={() => setValue(3)}/>
+            <Star selected={value > 3} starOn={() => setValue(4)}/>
+            <Star selected={value > 4} starOn={() => setValue(5)}/>
         </div>
     )
 };
@@ -24,9 +21,9 @@ type StarPropsType = {
 }
 
 const Star = (props: StarPropsType) => {
-    return props.selected ?
-        <span onClick={props.starOn}><b>Star</b> </span> :
-        <span onClick={props.starOn}>Star </span>;
+    return <span onClick={props.starOn}>
+        {props.selected ? <b>Star </b> : 'Star '}
+    </span>
 }
 
 export default UncontrolledRating
