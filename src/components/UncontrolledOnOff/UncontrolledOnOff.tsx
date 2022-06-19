@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
 import s from './UncontrolledOnoff.module.css'
 
-const UncontrolledOnOff = () => {
+type PropsType = {
+    onChange: (on: boolean) => void
+}
+
+const UncontrolledOnOff = (props: PropsType) => {
     const [on, setOn] = useState<boolean>(false);
 
     const onStyle = {
@@ -27,10 +31,24 @@ const UncontrolledOnOff = () => {
         backgroundColor: on ? 'green' : 'red'
     }
 
+    const onClicked = () => {
+        setOn(true)
+        props.onChange(true)
+    }
+    const offClicked = () => {
+        setOn(false)
+        props.onChange(false)
+    }
+
     return (
         <div className={s.wrapper}>
-            <div style={onStyle} onClick={() => setOn(true)}>ON</div>
-            <div style={offStyle} onClick={() => setOn(false)}>OFF</div>
+            <div style={onStyle}
+                 onClick={onClicked}
+            >ON
+            </div>
+            <div style={offStyle}
+                 onClick={offClicked}>OFF
+            </div>
             <div style={indicatorStyle}></div>
         </div>
     );

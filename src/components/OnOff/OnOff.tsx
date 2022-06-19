@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import s from './onoff.module.css'
 
 type OnOffType = {
     on: boolean
-    setOn: (value: boolean) => void
+    onChange: (value: boolean) => void
 }
 
 const OnOff = (props: OnOffType) => {
@@ -33,8 +33,15 @@ const OnOff = (props: OnOffType) => {
 
     return (
         <div className={s.wrapper}>
-            <div style={onStyle} onClick={() => props.setOn(true)}>ON</div>
-            <div style={offStyle} onClick={() => props.setOn(false)}>OFF</div>
+            <div style={onStyle}
+                 onClick={() => props.onChange(true)}>
+                ON
+            </div>
+
+            <div style={offStyle}
+                 onClick={() => props.onChange(false)}>
+                OFF
+            </div>
             <div style={indicatorStyle}></div>
         </div>
     );

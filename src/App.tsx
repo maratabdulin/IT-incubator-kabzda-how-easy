@@ -20,11 +20,11 @@ function App() {
             <Accordion
                 titleValue={'Menu'}
                 collapsed={accordionCollapsed}
-                setCollapsed={setAccordionCollapsed}
+                onChange={()=>setAccordionCollapsed(!accordionCollapsed)}
             />
             {/*<Accordion titleValue={'User list'} collapsed={true}/>*/}
-            {/*<UncontrolledAccordion titleValue={'Menu'}/>*/}
-            {/*<UncontrolledAccordion titleValue={'User List'}/>*/}
+            <UncontrolledAccordion titleValue={'Menu'}/>
+            <UncontrolledAccordion titleValue={'User List'}/>
             <hr/>
             Article 2
             {/*<UncontrolledRating/>*/}
@@ -35,8 +35,8 @@ function App() {
             {/*<Rating value={5}/>*/}
             <hr/>
             Article 3
-            <OnOff on={on} setOn={setOn}/>
-            <UncontrolledOnOff/>
+            <OnOff on={on} onChange={setOn}/>
+            <UncontrolledOnOff onChange={setOn}/> {on.toString()}
         </div>
     );
 }
