@@ -2,11 +2,14 @@ import React from 'react';
 
 type AccordionPropsType = {
     titleValue: string
+    /**
+     * collapsed is property of accordion
+     */
     collapsed: boolean
     onChange: () => void
 }
 
-const Accordion = (props: AccordionPropsType) => {
+export const Accordion = (props: AccordionPropsType) => {
     return (
         <div>
             <AccordionTitle
@@ -27,7 +30,7 @@ type AccordionTitlePropsType = {
 
 const AccordionTitle = (props: AccordionTitlePropsType) => {
     return (
-        <h3 onClick={props.onChange}>-- {props.title} --</h3>
+        <h3 onClick={(e)=>props.onChange()}>-- {props.title} --</h3>
     )
 }
 
@@ -40,5 +43,3 @@ const AccordionBody = () => {
         </ul>
     )
 }
-
-export default Accordion;

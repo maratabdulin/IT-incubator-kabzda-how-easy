@@ -6,7 +6,7 @@ type OnOffType = {
     onChange: (value: boolean) => void
 }
 
-const OnOff = (props: OnOffType) => {
+export const OnOff = (props: OnOffType) => {
 
     const onStyle = {
         width: '25px',
@@ -46,5 +46,3 @@ const OnOff = (props: OnOffType) => {
         </div>
     );
 };
-
-export default OnOff;
