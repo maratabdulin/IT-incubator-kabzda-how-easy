@@ -6,7 +6,7 @@ type OnOffType = {
     onChange: (value: boolean) => void
 }
 
-export const OnOff = (props: OnOffType) => {
+const OnOffSecret = (props: OnOffType) => {
 
     const onStyle = {
         width: '25px',
@@ -46,3 +46,5 @@ export const OnOff = (props: OnOffType) => {
         </div>
     );
 };
+
+export const OnOff = React.memo(OnOffSecret);

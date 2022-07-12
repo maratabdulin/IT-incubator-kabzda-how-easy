@@ -16,7 +16,7 @@ type AccordionPropsType = {
     onClick: (item: any)=>void
 }
 
-export const Accordion = (props: AccordionPropsType) => {
+const AccordionSecret = (props: AccordionPropsType) => {
     return (
         <div>
             <AccordionTitle
@@ -53,3 +53,5 @@ const AccordionBody = (props: AccordionBodyPropsType) => {
         </ul>
     )
 }
+
+export const Accordion = React.memo(AccordionSecret);
