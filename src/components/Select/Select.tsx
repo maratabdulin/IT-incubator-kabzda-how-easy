@@ -59,7 +59,6 @@ const SelectSecret = (props: SelectPropsType) => {
             onKeyUp={onKeyUp}
         >
             <span className={s.title} onClick={toggleItems}>{selectedItem && selectedItem.title}</span>
-
             {
                 active &&
                 <div className={s.items}>
