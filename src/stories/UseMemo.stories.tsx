@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from "react";
+import React, {useCallback, useMemo, useState} from "react";
 
 export default {
     title: 'useMemo'
@@ -54,9 +54,9 @@ export const HelpsToReactMemo = () => {
     const [counter, setCounter] = useState(0);
     const [users, setUsers] = useState(['Marat', 'Margo', 'Evgeny']);
 
-    const newArray = useMemo(()=>{
+    const newArray = useMemo(() => {
         return users.filter(el => el.toLowerCase().indexOf('a') > -1)
-    },[users])
+    }, [users])
 
     const addUser = () => {
         const newUser = [...users, 'Sveta ' + new Date().getTime()];
@@ -66,8 +66,48 @@ export const HelpsToReactMemo = () => {
 
     return <>
         <button onClick={() => setCounter(counter + 1)}>+</button>
-        <button onClick={()=> addUser()}>Add user</button>
+        <button onClick={() => addUser()}>Add user</button>
         {counter}
         <Users users={newArray}/>
     </>
 }
+
+export const LikeUseCallback = () => {
+    console.log('like to use callback')
+    const [counter, setCounter] = useState(0);
+    const [books, setBooks] = useState(['React', 'CSS', 'HTML']);
+
+    const newArray = useMemo(() => {
+        return books.filter(el => el.toLowerCase().indexOf('a') > -1)
+    }, [books])
+
+    const memoizedBooks = useCallback(
+        () => {
+            const newBook = [...books, 'Angular ' + new Date().getTime()];
+            setBooks(newBook);
+        },
+        [books],
+    );
+
+
+    return <>
+        <button onClick={() => setCounter(counter + 1)}>+</button>
+        {counter}
+        <Books books={newArray} addBook={memoizedBooks}/>
+    </>
+}
+
+type BooksSecretPropsType = {
+    books: Array<string>
+    addBook: () => void
+}
+
+const BooksSecret = (props: BooksSecretPropsType) => {
+    console.log('BOOKS SECRET');
+    return <div>
+        <button onClick={() => props.addBook()}>Add book</button>
+        {props.books.map((book, i) => <div key={i.toString()}>{book}</div>)}
+    </div>
+}
+
+const Books = React.memo(BooksSecret);
